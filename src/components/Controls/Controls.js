@@ -52,7 +52,7 @@ const Controls = ({ running, setRunning, runningRef, grid, setGrid }) => {
     }
   };
 
-  const handleRandom = () => {
+  const handleRandomize = () => {
     const rows = [];
 
     for (let i = 0; i < numRows; i++) {
@@ -75,9 +75,9 @@ const Controls = ({ running, setRunning, runningRef, grid, setGrid }) => {
         type="button"
         class="btn btn-secondary"
         disabled={running}
-        onClick={handleRandom}
+        onClick={handleRandomize}
       >
-        Random
+        Randomize
       </button>
       <button type="button" class="btn btn-danger" id="reset_btn">
         Reset
