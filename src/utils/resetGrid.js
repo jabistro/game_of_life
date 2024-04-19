@@ -1,6 +1,9 @@
 export function resetGrid() {
   const rows = [];
-  for (let i = 0; i < numRows; i++) {
-    rows.push(Array.from(Array(numCols), () => 0));
+
+  for (let i = 0; i < 25; i++) {
+    rows.push(Array.from(Array(25), () => 0));
   }
+
+  return rows;
 }

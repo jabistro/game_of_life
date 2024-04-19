@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
-import './Grid.css';
-import { resetGrid } from '../../utils/resetGrid';
+import { produce } from "immer";
+import React from "react";
+import "./Grid.css";
 
-const numRows = 40;
-const numCols = 40;
-
-const Grid = () => {
-  const [grid, setGrid] = useState(() => {
-    return resetGrid();
-  })
-  const [running, setRunning] = useState(false);
-  const runningRef = useRef(running);
-  runningRef.current = running;
-
+const Grid = ({ grid, setGrid, setRunning }) => {
   return (
-    <div>Grid</div>
-  )
-}
+    <div className="grid">
+      {grid?.map((rows, i) =>
+        rows?.map((col, j) => (
+          <div
+            className="cell"
+            key={`${i}-${j}`}
+            style={{
+              backgroundColor: grid[i][j] ? "black" : "white",
+            }}
+            onClick={() => {
+              const gridUpdate = produce(grid, (newGrid) => {
+                newGrid[i][j] = grid[i][j] ? 0 : 1;
+              });
+              setGrid(gridUpdate);
+              setRunning(false);
+            }}
+          />
+        ))
+      )}
+    </div>
+  );
+};
 
-export default Grid
+export default Grid;
