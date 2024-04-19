@@ -1,8 +1,9 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { resetGrid } from "../../utils/resetGrid.js";
 import Controls from "../Controls/Controls.js";
 import Grid from "../Grid/Grid.js";
 import "./Game.css";
+import Footer from "../Footer/Footer.js";
 
 const Game = () => {
   const [grid, setGrid] = useState(() => {
@@ -14,14 +15,17 @@ const Game = () => {
 
   return (
     <div className="game_container">
-      <Grid grid={grid} setGrid={setGrid} setRunning={setRunning}/>
-      <Controls
-        running={running}
-        setRunning={setRunning}
-        runningRef={runningRef}
-        grid={grid}
-        setGrid={setGrid}
-      />
+      <div className="grid_and_controls">
+        <Grid grid={grid} setGrid={setGrid} setRunning={setRunning} />
+        <Controls
+          running={running}
+          setRunning={setRunning}
+          runningRef={runningRef}
+          grid={grid}
+          setGrid={setGrid}
+        />
+      </div>
+      <Footer />
     </div>
   );
 };

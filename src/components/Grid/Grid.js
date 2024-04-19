@@ -3,6 +3,14 @@ import React from "react";
 import "./Grid.css";
 
 const Grid = ({ grid, setGrid, setRunning }) => {
+  const handleToggle = (i, j) => {
+    const gridUpdate = produce(grid, (newGrid) => {
+      newGrid[i][j] = grid[i][j] ? 0 : 1;
+    });
+    setGrid(gridUpdate);
+    setRunning(false);
+  }
+
   return (
     <div className="grid">
       {grid?.map((rows, i) =>
@@ -13,13 +21,7 @@ const Grid = ({ grid, setGrid, setRunning }) => {
             style={{
               backgroundColor: grid[i][j] ? "black" : "white",
             }}
-            onClick={() => {
-              const gridUpdate = produce(grid, (newGrid) => {
-                newGrid[i][j] = grid[i][j] ? 0 : 1;
-              });
-              setGrid(gridUpdate);
-              setRunning(false);
-            }}
+            onClick={() => handleToggle(i, j)}
           />
         ))
       )}
