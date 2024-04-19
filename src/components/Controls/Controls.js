@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { resetGrid } from "../../utils/resetGrid";
 import "./Controls.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { runGame } from "../../utils/runGame";
+
+const numRows = 25;
+const numCols = 25;
 
 const Controls = ({
-  numRows,
-  numCols,
   running,
   setRunning,
   runningRef,
+  grid,
   setGrid,
-  runGame,
 }) => {
   useEffect(() => {
     const dialog = document.getElementById("dialog");
@@ -43,12 +45,16 @@ const Controls = ({
     };
   }, []);
 
+  const runGameCallback = useCallback(() => {
+    runGame(grid, setGrid, running, runningRef, numRows, numCols);
+ }, [grid, running, runningRef, numRows, numCols]);
+
   const handleStart = () => {
     setRunning(!running);
 
     if (!running) {
       runningRef.current = true;
-      runGame();
+      runGameCallback();
     }
   };
 
@@ -64,9 +70,11 @@ const Controls = ({
     setGrid(rows);
   };
 
+
   return (
     <div className="btn_container">
       <h1>Game of Life</h1>
+      <p>Created by John Horton Conway</p>
       <button type="button" class="btn btn-primary" onClick={handleStart}>
         {!running ? "Start" : "Pause"}
       </button>

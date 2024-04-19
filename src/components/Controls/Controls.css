@@ -18,8 +18,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 20em;
-  border-radius: 1em;
+  width: 20rem;
+  border-radius: 1rem;
 }
 
 .dialog_btns {
@@ -30,5 +30,5 @@
 }
 
 .dialog_btns>button {
-  width: 8em;
+  width: 8rem;
 }
