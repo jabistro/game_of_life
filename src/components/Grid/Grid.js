@@ -9,7 +9,7 @@ const Grid = ({ grid, setGrid, setRunning }) => {
     });
     setGrid(gridUpdate);
     setRunning(false);
-  }
+  };
 
   return (
     <div className="grid">

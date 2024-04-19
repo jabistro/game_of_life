@@ -1,19 +1,13 @@
 import React, { useCallback, useEffect } from "react";
 import { resetGrid } from "../../utils/resetGrid";
+import { runGame } from "../../utils/runGame";
 import "./Controls.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { runGame } from "../../utils/runGame";
 
 const numRows = 25;
 const numCols = 25;
 
-const Controls = ({
-  running,
-  setRunning,
-  runningRef,
-  grid,
-  setGrid,
-}) => {
+const Controls = ({ running, setRunning, runningRef, grid, setGrid }) => {
   useEffect(() => {
     const dialog = document.getElementById("dialog");
     const showButton = document.getElementById("reset_btn");
@@ -47,7 +41,7 @@ const Controls = ({
 
   const runGameCallback = useCallback(() => {
     runGame(grid, setGrid, running, runningRef, numRows, numCols);
- }, [grid, running, runningRef, numRows, numCols]);
+  }, [grid, running, runningRef, numRows, numCols]);
 
   const handleStart = () => {
     setRunning(!running);
@@ -69,7 +63,6 @@ const Controls = ({
 
     setGrid(rows);
   };
-
 
   return (
     <div className="btn_container">

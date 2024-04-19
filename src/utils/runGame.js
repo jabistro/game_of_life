@@ -1,10 +1,17 @@
 import { produce } from "immer";
 import { coordinates } from "./coordinates";
 
-export const runGame = (grid, setGrid, running, runningRef, numRows, numCols) => {
- if (!runningRef.current) return;
+export const runGame = (
+  grid,
+  setGrid,
+  running,
+  runningRef,
+  numRows,
+  numCols
+) => {
+  if (!runningRef.current) return;
 
- setGrid((grid) => {
+  setGrid((grid) => {
     return produce(grid, (newGrid) => {
       for (let i = 0; i < numRows; i++) {
         for (let j = 0; j < numCols; j++) {
@@ -32,7 +39,10 @@ export const runGame = (grid, setGrid, running, runningRef, numRows, numCols) =>
         }
       }
     });
- });
+  });
 
- setTimeout(() => runGame(grid, setGrid, running, runningRef, numRows, numCols), 500);
+  setTimeout(
+    () => runGame(grid, setGrid, running, runningRef, numRows, numCols),
+    500
+  );
 };
