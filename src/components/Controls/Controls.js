@@ -37,11 +37,11 @@ const Controls = ({ running, setRunning, runningRef, grid, setGrid }) => {
       cancelButton?.removeEventListener("click", handleCancel);
       confirmButton?.removeEventListener("click", handleConfirm);
     };
-  }, []);
+  }, [setGrid, setRunning]);
 
   const runGameCallback = useCallback(() => {
     runGame(grid, setGrid, running, runningRef, numRows, numCols);
-  }, [grid, running, runningRef, numRows, numCols]);
+  }, [grid, setGrid, running, runningRef]);
 
   const handleStart = () => {
     setRunning(!running);
