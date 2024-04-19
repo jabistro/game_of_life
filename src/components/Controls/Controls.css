@@ -12,3 +12,23 @@
   border-radius: .2em;
   margin: 1em;
 }
+
+#dialog {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 20em;
+  border-radius: 1em;
+}
+
+.dialog_btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.dialog_btns>button {
+  width: 8em;
+}
