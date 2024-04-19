@@ -1,5 +1,5 @@
-import { produce } from "immer";
 import React from "react";
+import { produce } from "immer";
 import "./Grid.css";
 
 const Grid = ({ grid, setGrid, setRunning }) => {

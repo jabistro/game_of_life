@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
-import { resetGrid } from "../../utils/resetGrid.js";
 import Controls from "../Controls/Controls.js";
 import Grid from "../Grid/Grid.js";
-import "./Game.css";
 import Footer from "../Footer/Footer.js";
+import { resetGrid } from "../../utils/resetGrid.js";
+import "./Game.css";
 
 const Game = () => {
   const [grid, setGrid] = useState(() => {
