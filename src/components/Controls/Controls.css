@@ -3,14 +3,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-left: 4em;
+  margin-left: 4rem;
 }
 
 .btn_container>button {
-  height: 3em;
-  width: 8em;
-  border-radius: .2em;
-  margin: 1em;
+  height: 3rem;
+  width: 8rem;
+  border-radius: .2rem;
+  margin: 1rem;
 }
 
 #dialog {

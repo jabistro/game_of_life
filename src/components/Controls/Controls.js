@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { resetGrid } from "../../utils/resetGrid";
 import { runGame } from "../../utils/runGame";
 import "./Controls.css";
@@ -8,34 +8,34 @@ const numRows = 25;
 const numCols = 25;
 
 const Controls = ({ running, setRunning, runningRef, grid, setGrid }) => {
-  useEffect(() => {
-    const dialog = document.getElementById("dialog");
-    const showButton = document.getElementById("reset_btn");
-    const cancelButton = document.getElementById("cancel_btn");
-    const confirmButton = document.getElementById("confirm_btn");
+  const dialogRef = useRef(null);
+  const showDialogRef = useRef(null);
+  const cancelResetRef = useRef(null);
+  const confirmResetRef = useRef(null);
 
+  useEffect(() => {
     const handleOpenDialog = () => {
-      dialog.showModal();
+      dialogRef.current.showModal();
     };
 
     const handleCancel = () => {
-      dialog.close();
+      dialogRef.current.close();
     };
 
     const handleConfirm = () => {
-      dialog.close();
+      dialogRef.current.close();
       setGrid(resetGrid());
       setRunning(false);
     };
 
-    showButton?.addEventListener("click", handleOpenDialog);
-    cancelButton?.addEventListener("click", handleCancel);
-    confirmButton?.addEventListener("click", handleConfirm);
+    showDialogRef.current.addEventListener("click", handleOpenDialog);
+    cancelResetRef.current.addEventListener("click", handleCancel);
+    confirmResetRef.current.addEventListener("click", handleConfirm);
 
     return () => {
-      showButton?.removeEventListener("click", handleOpenDialog);
-      cancelButton?.removeEventListener("click", handleCancel);
-      confirmButton?.removeEventListener("click", handleConfirm);
+      showDialogRef.current?.removeEventListener("click", handleOpenDialog);
+      cancelResetRef.current?.removeEventListener("click", handleCancel);
+      confirmResetRef.current?.removeEventListener("click", handleConfirm);
     };
   }, [setGrid, setRunning]);
 
@@ -79,16 +79,16 @@ const Controls = ({ running, setRunning, runningRef, grid, setGrid }) => {
       >
         Randomize
       </button>
-      <button type="button" class="btn btn-danger" id="reset_btn">
+      <button type="button" class="btn btn-danger" ref={showDialogRef}>
         Reset
       </button>
-      <dialog id="dialog">
+      <dialog id="dialog" ref={dialogRef}>
         <p>Are you sure?</p>
         <div className="dialog_btns">
-          <button type="button" class="btn btn-secondary" id="cancel_btn">
+          <button type="button" class="btn btn-secondary" ref={cancelResetRef}>
             Cancel
           </button>
-          <button type="button" class="btn btn-danger" id="confirm_btn">
+          <button type="button" class="btn btn-danger" ref={confirmResetRef}>
             Confirm Reset
           </button>
         </div>

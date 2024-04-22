@@ -6,9 +6,7 @@ import { resetGrid } from "../../utils/resetGrid.js";
 import "./Game.css";
 
 const Game = () => {
-  const [grid, setGrid] = useState(() => {
-    return resetGrid();
-  });
+  const [grid, setGrid] = useState(() => resetGrid());
   const [running, setRunning] = useState(false);
   const runningRef = useRef(running);
   runningRef.current = running;
