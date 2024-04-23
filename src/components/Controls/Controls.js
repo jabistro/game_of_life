@@ -9,7 +9,8 @@ const numRows = 25;
 const numCols = 25;
 
 const Controls = () => {
-  const { grid, setGrid, running, setRunning, runningRef } = useContext(GameContext);
+  const { grid, setGrid, running, setRunning, runningRef } =
+    useContext(GameContext);
   const dialogRef = useRef(null);
   const showDialogRef = useRef(null);
   const cancelResetRef = useRef(null);

@@ -14,7 +14,9 @@ const Game = () => {
   runningRef.current = running;
 
   return (
-    <GameContext.Provider value={{ grid, setGrid, running, setRunning, runningRef }}>
+    <GameContext.Provider
+      value={{ grid, setGrid, running, setRunning, runningRef }}
+    >
       <div className="game_container">
         <div className="grid_and_controls">
           <Grid />

@@ -5,7 +5,7 @@ import "./Grid.css";
 
 const Grid = () => {
   const { grid, setGrid, setRunning } = useContext(GameContext);
-  
+
   const handleToggle = (i, j) => {
     const gridUpdate = produce(grid, (newGrid) => {
       newGrid[i][j] = grid[i][j] ? 0 : 1;
