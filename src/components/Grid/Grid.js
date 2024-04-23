@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { produce } from "immer";
+import { GameContext } from "../Game/Game";
 import "./Grid.css";
 
-const Grid = ({ grid, setGrid, setRunning }) => {
+const Grid = () => {
+  const { grid, setGrid, setRunning } = useContext(GameContext);
+  
   const handleToggle = (i, j) => {
     const gridUpdate = produce(grid, (newGrid) => {
       newGrid[i][j] = grid[i][j] ? 0 : 1;

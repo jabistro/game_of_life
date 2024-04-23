@@ -1,13 +1,15 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useContext, useEffect, useRef } from "react";
 import { resetGrid } from "../../utils/resetGrid";
 import { runGame } from "../../utils/runGame";
+import { GameContext } from "../Game/Game";
 import "./Controls.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const numRows = 25;
 const numCols = 25;
 
-const Controls = ({ running, setRunning, runningRef, grid, setGrid }) => {
+const Controls = () => {
+  const { grid, setGrid, running, setRunning, runningRef } = useContext(GameContext);
   const dialogRef = useRef(null);
   const showDialogRef = useRef(null);
   const cancelResetRef = useRef(null);
@@ -28,14 +30,18 @@ const Controls = ({ running, setRunning, runningRef, grid, setGrid }) => {
       setRunning(false);
     };
 
-    showDialogRef.current.addEventListener("click", handleOpenDialog);
-    cancelResetRef.current.addEventListener("click", handleCancel);
-    confirmResetRef.current.addEventListener("click", handleConfirm);
+    const showCurrent = showDialogRef.current;
+    const cancelCurrent = cancelResetRef.current;
+    const resestCurrent = confirmResetRef.current;
+
+    showCurrent.addEventListener("click", handleOpenDialog);
+    cancelCurrent.addEventListener("click", handleCancel);
+    resestCurrent.addEventListener("click", handleConfirm);
 
     return () => {
-      showDialogRef.current?.removeEventListener("click", handleOpenDialog);
-      cancelResetRef.current?.removeEventListener("click", handleCancel);
-      confirmResetRef.current?.removeEventListener("click", handleConfirm);
+      showCurrent.removeEventListener("click", handleOpenDialog);
+      cancelCurrent.removeEventListener("click", handleCancel);
+      resestCurrent.removeEventListener("click", handleConfirm);
     };
   }, [setGrid, setRunning]);
 
